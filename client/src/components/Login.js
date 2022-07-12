@@ -1,68 +1,78 @@
-import React, { useState } from 'react'
-import { Redirect, Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { Redirect, Link } from "react-router-dom";
+import  logo  from '../img/tyComp.png';
 
 function Login({ setCurrentUser }) {
-//   const history = useHistory()
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({username, password})
-    })
-      .then(res => {
-        if (res.ok) {
-          res.json().then(user => {
-            setCurrentUser(user)
-            // history.push('/wherever')
-          })
-        } else {
-          res.json().then(errors => {
-            console.error(errors)
-          })
-        }
-      })
-  }
-  return (
-    <div>
-      <Redirect to="/" />
-      <form onSubmit={handleSubmit}>
-        <h1>Log In</h1>
-        <p>
-          <label htmlFor="username">
-            Username
-          </label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </p>
-        <p>
-          <label
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            name=""
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </p>
-        <p><button type="submit">Log In</button></p>
-        <p>-- or --</p>
-        <p><Link to="/signup">Sign Up</Link></p>
-      </form>
-    </div>
-  )
+    //   const history = useHistory()
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        fetch("/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+        }).then(res => {
+            if (res.ok) {
+                res.json().then(user => {
+                    setCurrentUser(user);
+                    // history.push('/wherever')
+                });
+            } else {
+                res.json().then(errors => {
+                    console.error(errors);
+                });
+            }
+        });
+    };
+    return (
+        <div className="form-div  ">
+            {/* <Redirect to="/" /> */}
+            <img className="logo mb-4" src={ logo }  alt="BodiCat"/> 
+        
+            <form onSubmit={handleSubmit}>
+                <h1>Log In:</h1>
+                <p>
+                    <label htmlFor="username" className="p-2">
+                        Username
+                    </label>
+                    <input
+                        className="form-control"
+                        type="text"
+                        name="username"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
+                    />
+                </p>
+                <p>
+                    <label htmlFor="password" className="p-2">
+                        Password
+                    </label>
+                    <input
+                        className="form-control"
+                        type="password"
+                        name=""
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                </p>
+                <Button type="submit" variant="success">
+                    Log In
+                </Button>
+                <p className="p-4">--- OR ---</p>
+                <Link
+                    className="list-group-item list-group-item-danger"
+                    to="/signup"
+                >
+                    Sign Up
+                </Link>
+            </form>
+        </div>
+    );
 }
 
-export default Login
+export default Login;

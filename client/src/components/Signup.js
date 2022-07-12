@@ -2,6 +2,7 @@
 import { Button, Container } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import  logo  from '../img/tyComp.png';
 
 function Signup({ setCurrentUser }) {
     //   const history = useHistory()
@@ -34,46 +35,50 @@ function Signup({ setCurrentUser }) {
         });
     };
     return (
+        <>
         <div className="form-div  ">
-            
+        <img className="logo mb-4" src={ logo }  alt="BodiCat"/> 
+        
             <form onSubmit={handleSubmit}>
-                <h1>Sign Up</h1>
-                
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
-                    />
-                
-                
-                    <label htmlFor="password">Password  </label>
-                    <input
-                        type="password"
-                        name=""
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                    />
-                
-                
-                    <label htmlFor="password_confirmation">
-                        Password Confirmation  
-                    </label>
-                    <input
-                        type="password"
-                        name="password_confirmation"
-                        value={passwordConfirmation}
-                        onChange={e => setPasswordConfirmation(e.target.value)}
-                    />
-                
-                <Button type="submit">Sign Up</Button>
-               
-                <p>-- or --</p>
-                <Link to="/login">Log In</Link>
+                <h1>Sign Up:</h1>
+
+                <label className="p-2" htmlFor="username">Username</label>
+                <input
+                    className="form-control"
+                    type="text"
+                    name="username"
+                    value={username}
+                    onChange={e => setUsername(e.target.value)}
+                />
+
+                <label className="p-2" htmlFor="password">Password </label>
+                <input
+                    className="form-control"
+                    type="password"
+                    name=""
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                />
+
+                <label className="p-2" htmlFor="password_confirmation">
+                    Password Confirmation
+                </label>
+                <input
+                    className="form-control"
+                    type="password"
+                    name="password_confirmation"
+                    value={passwordConfirmation}
+                    onChange={e => setPasswordConfirmation(e.target.value)}
+                />
+
+                <Button className="mt-3" variant="success" type="submit">Sign Up</Button>
+
+                <p className="p-3">--- OR ---</p>
+                <Link className="list-group-item list-group-item-danger" to="/login">Log In</Link>
             </form>
-            
         </div>
+
+        </>
     );
 }
 
