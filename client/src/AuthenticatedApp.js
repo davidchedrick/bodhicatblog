@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
+import Blog from './components/Blog';
 import PostArea from './components/PostArea';
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
@@ -27,11 +28,19 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
   }
 
   return (
-    <PostArea 
+    <Switch>
+      <Route exact path="/">
+      <PostArea 
       currentUser = {currentUser} 
       posts = {posts}
       handleLogout = {handleLogout}
     />
+    </Route>
+    <Route exact path="/posts/:id">
+      <Blog/>
+    </Route>
+    </Switch>
+    
   );
 }
 

@@ -5,14 +5,10 @@ class Api::PostsController < ApplicationController
         render json: Post.all.order(created_at: :desc)
     end
 
-    # def show
-    #     render json: @event
-    # end
+    def show
+        render json: Post.find(params[:id])
+    end
 
-    # private
 
-    # def set_event
-    #     @post = Post.find(params[:id])
-    # end
 
 end
