@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import  logo  from '../img/tyComp.png';
+import TitleBar from './TitleBar'
 
 function Login({ setCurrentUser }) {
-    //   const history = useHistory()
+      const history = useHistory()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -20,7 +21,7 @@ function Login({ setCurrentUser }) {
             if (res.ok) {
                 res.json().then(user => {
                     setCurrentUser(user);
-                    // history.push('/wherever')
+                    history.push('/')
                 });
             } else {
                 res.json().then(errors => {
@@ -30,8 +31,10 @@ function Login({ setCurrentUser }) {
         });
     };
     return (
+        <>
+        <TitleBar />
         <div className="form-div  ">
-            {/* <Redirect to="/" /> */}
+            <Redirect to="/" />
             <img className="logo mb-4" src={ logo }  alt="BodiCat"/> 
         
             <form onSubmit={handleSubmit}>
@@ -72,6 +75,7 @@ function Login({ setCurrentUser }) {
                 </Link>
             </form>
         </div>
+        </>
     );
 }
 

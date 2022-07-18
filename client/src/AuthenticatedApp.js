@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import PostArea from './components/PostArea';
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
   const history = useHistory()
@@ -26,16 +27,11 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
   }
 
   return (
-    <div>
-      <p>Logged in as {currentUser.username} <button onClick={handleLogout}>Logout</button></p>
-      {posts.map(post => (
-        <div key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.content}</p>
-        </div>
-      ))
-      }
-    </div>
+    <PostArea 
+      currentUser = {currentUser} 
+      posts = {posts}
+      handleLogout = {handleLogout}
+    />
   );
 }
 

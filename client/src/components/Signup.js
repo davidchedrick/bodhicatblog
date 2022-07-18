@@ -3,6 +3,7 @@ import { Button, Container } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import  logo  from '../img/tyComp.png';
+import TitleBar from "./TitleBar";
 
 function Signup({ setCurrentUser }) {
     //   const history = useHistory()
@@ -36,6 +37,7 @@ function Signup({ setCurrentUser }) {
     };
     return (
         <>
+        <TitleBar />
         <div className="form-div  ">
         <img className="logo mb-4" src={ logo }  alt="BodiCat"/> 
         
