@@ -3,6 +3,7 @@ class Api::UsersController < ApplicationController
     skip_before_action :confirm_authentication
   
     def show
+      
       if current_user
         render json: current_user, status: :ok
       else
@@ -11,10 +12,11 @@ class Api::UsersController < ApplicationController
     end
 
     def create
+      
       user = User.create(user_params)
       if user.valid?
         session[:user_id] = user.id
-        render json: user, status: :ok
+        render json: user, include: :posts, status: :ok
       else
         render json: { error: user.errors }, status: :unprocessable_entity
       end
@@ -26,6 +28,6 @@ class Api::UsersController < ApplicationController
       params.permit(:username, :password, :password_confirmation)
     end
   
-  end
+
 
 end
