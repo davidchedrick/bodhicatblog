@@ -13,6 +13,54 @@
     height: 300px;
     border: 2px solid;
     border-radius: 90%;
-    box-shadow: 5px 3px 40px rgba(0, 0, 0, 0.75), -5px -3px 40px rgba(0, 0, 0, 0.75);
-    background-color: #F3F3F3
+    box-shadow: 5px 3px 40px rgba(0, 0, 0, 0.75),
+        -5px -3px 40px rgba(0, 0, 0, 0.75);
+    background-color: #f3f3f3;
+}
+
+.loading-div {
+    display: inline-block;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 90%;
+    background-color: rgb(238, 11, 189);
+    position: relative;
+    animation-name: loading;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes loading {
+    0% {
+        left: 0px;
+    }
+    12% {
+        left: 100px;
+    }
+    24% {
+        left: 200px;
+    }
+    36% {
+        left: 100px;
+    }
+    48% {
+        left: 0px;
+    }
+    60% {
+        left: -100px;
+    }
+    72% {
+        left: -200px;
+    }
+    84% {
+        left: -100px;
+    }
+    100% {
+        left: 0px;
+    }
 }
