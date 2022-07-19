@@ -11,7 +11,7 @@ function PostArea({currentUser, posts, handleLogout}) {
             handleLogout = {handleLogout}
         />
         <div>
-          
+       
           {posts.map(post => (
             <Blogs
             key={post.id}

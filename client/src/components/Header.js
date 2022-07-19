@@ -8,6 +8,7 @@ function Header({ currentUser, handleLogout }) {
             <Container>
                
             <button onClick={handleLogout}>Logout</button>
+            <a href={"/post"}  className="btn btn-dark fs-4">+</a>
                 <Navbar.Brand className="Header " href="">
                     BodhiCat Blogging!
 

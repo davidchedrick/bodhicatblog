@@ -37,6 +37,9 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
             <Route exact path="/posts/:id">
                 <Blog />
             </Route>
+            <Route exact path="/post">
+                <Blog />
+            </Route>
         </Switch>
     );
 }
