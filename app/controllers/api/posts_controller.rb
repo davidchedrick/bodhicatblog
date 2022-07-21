@@ -1,4 +1,5 @@
 class Api::PostsController < ApplicationController
+    
 
     def index
         post = Post.all
@@ -10,5 +11,21 @@ class Api::PostsController < ApplicationController
     end
 
 
+    def create
+        
+        post = Post.create!(post_params)
 
+        # session[:user_id] = user_id
+        render json: post, status: :created
+    end
+
+    private
+
+    def post_params 
+        params.permit(:title, :content, :user_id)
+    end
+
+    def authorize
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+    end
 end

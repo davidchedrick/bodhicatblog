@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import DeletePost from "./DeletePost";
+import EditPost from "./EditPost";
 import Loading from "./Loading";
 // import ReactMarkdown from "react-markdown";
 
@@ -12,6 +14,7 @@ const initialState = {
 
 function Blog() {
     const [{ blog, error, status }, setState] = useState(initialState);
+    
     const { id } = useParams();
 
     useEffect(() => {
@@ -19,7 +22,7 @@ function Blog() {
         fetch(`/api/posts/${id}`).then(r => {
             if (r.ok) {
                 r.json().then(blog => {
-                    console.log("blog: ", blog);
+                    
                     setState({ blog, error: null, status: "resolved" });
                 });
             } else {
@@ -46,6 +49,12 @@ function Blog() {
             >
                 X
             </Button>
+            
+            <div className="m-3 pt-5 d-grid gap-2">
+            <EditPost />
+            <DeletePost />
+            </div>
+
             <article className="blog">
                 <h1 className="b-title">{blog.title}</h1>
                 <small>

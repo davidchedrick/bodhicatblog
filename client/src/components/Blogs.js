@@ -14,7 +14,7 @@ function Blogs({ post }) {
                 <Card.Text>{post.content}</Card.Text>
 
                 <Button 
-                    variant="primary"
+                    variant="outline-danger"
                     href={`/posts/${post.id}`}
                 >
                     Read
