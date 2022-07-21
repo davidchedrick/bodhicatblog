@@ -1,5 +1,5 @@
 // client/src/components/Signup.js
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import  logo  from '../img/tyComp.png';

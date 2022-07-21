@@ -4,25 +4,23 @@ import { useParams } from "react-router-dom";
 import DeletePost from "./DeletePost";
 import EditPost from "./EditPost";
 import Loading from "./Loading";
-// import ReactMarkdown from "react-markdown";
-
-const initialState = {
-    article: null,
-    error: null,
-    status: "pending",
-};
 
 function Blog() {
-    const [{ blog, error, status }, setState] = useState(initialState);
-    
+    const [{ blog, status }, setState] = useState({
+        article: null,
+        error: null,
+        status: "pending",
+    });
+   
+    const [isEditing, setIsEditing] = useState(false);
+    console.log("isEditing: ", isEditing);
     const { id } = useParams();
 
     useEffect(() => {
-        setState(initialState);
+        // setState(initialState);
         fetch(`/api/posts/${id}`).then(r => {
             if (r.ok) {
                 r.json().then(blog => {
-                    
                     setState({ blog, error: null, status: "resolved" });
                 });
             } else {
@@ -44,18 +42,28 @@ function Blog() {
             <Button
                 variant="dark"
                 size="sm"
+                className="m-2 position-absolute top-0 start-0"
+                onClick={() => setIsEditing(isEditing => !isEditing)}
+            >
+                ...
+            </Button>
+            <Button
+                variant="dark"
+                size="sm"
                 className="m-2 position-absolute top-0 end-0"
                 href={"/"}
             >
                 X
             </Button>
-            
-            <div className="m-3 pt-5 d-grid gap-2">
-            <EditPost />
-            <DeletePost />
-            </div>
 
-            <article className="blog">
+            {isEditing ? (
+                <div className="m-3 pt-5 d-grid gap-2">
+                    <EditPost />
+                    <DeletePost />
+                </div>
+            ) : null}
+
+            <article className="blog m-4">
                 <h1 className="b-title">{blog.title}</h1>
                 <small>
                     <p>{blog.date}</p>
