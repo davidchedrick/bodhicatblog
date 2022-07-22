@@ -8,11 +8,10 @@ import TitleBar from "./TitleBar";
 function Signup({ setCurrentUser }) {
     const history = useHistory();
     const [userError, setUserError] = useState(false);
-    console.log('userError: ', userError);
   
     const [passwordError, setPasswordError] = useState(false);
 
-    const [errorMessage, setErrorMessage] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -78,7 +77,11 @@ function Signup({ setCurrentUser }) {
                         type="text"
                         name="username"
                         value={username}
-                        onChange={e => setUsername(e.target.value)}
+                        onChange={e => {
+                            setUsername(e.target.value)
+                            setUserError(false)
+                            setPasswordError(false)
+                        }}
                     />
 
                     <label className="p-2" htmlFor="password">
@@ -89,7 +92,11 @@ function Signup({ setCurrentUser }) {
                         type="password"
                         name=""
                         value={password}
-                        onChange={e => setPassword(e.target.value)}
+                        onChange={e => {
+                            setPassword(e.target.value)
+                            setPasswordError(false)
+                            setUserError(false)
+                        }}
                     />
 
                     <label className="p-2" htmlFor="password_confirmation">
@@ -100,7 +107,11 @@ function Signup({ setCurrentUser }) {
                         type="password"
                         name="password_confirmation"
                         value={passwordConfirmation}
-                        onChange={e => setPasswordConfirmation(e.target.value)}
+                        onChange={e => {
+                            setPasswordConfirmation(e.target.value)
+                            setPasswordError(false)
+                            setUserError(false)
+                        }}
                     />
 
                     <Button className="mt-3" variant="success" type="submit">

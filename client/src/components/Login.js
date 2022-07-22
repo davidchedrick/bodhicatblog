@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import { Redirect, Link, useHistory } from "react-router-dom";
 import  logo  from '../img/tyComp.png';
 import TitleBar from './TitleBar'
@@ -8,7 +8,9 @@ function Login({ setCurrentUser }) {
       const history = useHistory()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const [userError, setUserError] = useState(false);
+    console.log('userErrorxx: ', userError);
+    const [errorMessage, setErrorMessage] = useState("");
     const handleSubmit = event => {
         event.preventDefault();
         fetch("/api/login", {
@@ -26,6 +28,12 @@ function Login({ setCurrentUser }) {
             } else {
                 res.json().then(errors => {
                     console.error(errors);
+
+                    if(errors.error) {
+                        setUserError(true)
+                        setErrorMessage(errors.error)
+                     }
+
                 });
             }
         });
@@ -39,6 +47,11 @@ function Login({ setCurrentUser }) {
         
             <form onSubmit={handleSubmit}>
                 <h1>Log In:</h1>
+
+                {userError ? (
+                        <Alert variant="danger">{errorMessage}</Alert>
+                    ) : null}
+
                 <p>
                     <label htmlFor="username" className="p-2">
                         Username
@@ -48,7 +61,10 @@ function Login({ setCurrentUser }) {
                         type="text"
                         name="username"
                         value={username}
-                        onChange={e => setUsername(e.target.value)}
+                        onChange={e => {
+                            setUsername(e.target.value)
+                            setUserError(false)
+                        }}
                     />
                 </p>
                 <p>
@@ -60,7 +76,10 @@ function Login({ setCurrentUser }) {
                         type="password"
                         name=""
                         value={password}
-                        onChange={e => setPassword(e.target.value)}
+                        onChange={e => {
+                            setPassword(e.target.value)
+                            setUserError(false)
+                        }}
                     />
                 </p>
                 <Button type="submit" variant="success">
