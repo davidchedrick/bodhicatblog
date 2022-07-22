@@ -1,7 +1,7 @@
 import { Button, Card} from "react-bootstrap";
 
 function Blogs({ post }) {
-    console.log("post: ", post);
+    
 
     return (
         <Card className="text-center m-3">

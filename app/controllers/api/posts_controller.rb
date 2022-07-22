@@ -12,11 +12,14 @@ class Api::PostsController < ApplicationController
 
 
     def create
-        
         post = Post.create!(post_params)
-
-        # session[:user_id] = user_id
         render json: post, status: :created
+    end
+
+    def destroy
+        post = Post.find(params[:id])
+        post.destroy
+        head :no_content
     end
 
     private

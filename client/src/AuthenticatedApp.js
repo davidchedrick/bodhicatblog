@@ -38,7 +38,11 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
                 />
             </Route>
             <Route exact path="/posts/:id">
-                <Blog />
+                <Blog 
+                    setFetchRequest={setFetchRequest}
+                    fetchRequest={fetchRequest}
+                    currentUser={currentUser}
+                />
             </Route>
             <Route exact path="/api/post">
                 <AddPost 

@@ -5,23 +5,28 @@ import DeletePost from "./DeletePost";
 import EditPost from "./EditPost";
 import Loading from "./Loading";
 
-function Blog() {
-    const [{ blog, status }, setState] = useState({
+function Blog({ fetchRequest, setFetchRequest, currentUser }) {
+    console.log('currentUser: ', currentUser.id);
+    const [{ blog, error, status }, setState] = useState({
         article: null,
         error: null,
         status: "pending",
     });
    
+    
     const [isEditing, setIsEditing] = useState(false);
-    console.log("isEditing: ", isEditing);
+    const [isPoster, setIsPoster] = useState(false);
     const { id } = useParams();
+    
 
     useEffect(() => {
-        // setState(initialState);
+        
         fetch(`/api/posts/${id}`).then(r => {
             if (r.ok) {
                 r.json().then(blog => {
+                    console.log('blog: ', blog.user_id);
                     setState({ blog, error: null, status: "resolved" });
+                    if (currentUser.id === blog.user_id) setIsPoster(true)
                 });
             } else {
                 r.json().then(message =>
@@ -33,12 +38,13 @@ function Blog() {
                 );
             }
         });
-    }, [id]);
+    }, [id, currentUser.id]);
 
     if (status === "pending") return <Loading />;
-
+    // if (currentUser.id === blog.user_id) {setIsPoster(true)}
     return (
         <>
+        {isPoster ? (
             <Button
                 variant="dark"
                 size="sm"
@@ -47,6 +53,9 @@ function Blog() {
             >
                 ...
             </Button>
+        ) : null}
+            
+
             <Button
                 variant="dark"
                 size="sm"
@@ -56,10 +65,17 @@ function Blog() {
                 X
             </Button>
 
+            
             {isEditing ? (
                 <div className="m-3 pt-5 d-grid gap-2">
-                    <EditPost />
-                    <DeletePost />
+                    <EditPost 
+                    setFetchRequest={setFetchRequest}
+                    fetchRequest={fetchRequest}
+                    />
+                    <DeletePost 
+                       setFetchRequest={setFetchRequest}
+                       fetchRequest={fetchRequest} 
+                    />
                 </div>
             ) : null}
 
