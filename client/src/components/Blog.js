@@ -2,31 +2,29 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import DeletePost from "./DeletePost";
-import EditPost from "./EditPost";
+import Editor from "./Editor";
 import Loading from "./Loading";
 
 function Blog({ fetchRequest, setFetchRequest, currentUser }) {
-    console.log('currentUser: ', currentUser.id);
+    console.log("currentUser: ", currentUser.id);
     const [{ blog, error, status }, setState] = useState({
         article: null,
         error: null,
         status: "pending",
     });
-   
-    
+
+    const [isEditor, setIsEditor] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [isPoster, setIsPoster] = useState(false);
     const { id } = useParams();
-    
 
     useEffect(() => {
-        
         fetch(`/api/posts/${id}`).then(r => {
             if (r.ok) {
                 r.json().then(blog => {
-                    console.log('blog: ', blog.user_id);
+                    console.log("blog: ", blog.user_id);
                     setState({ blog, error: null, status: "resolved" });
-                    if (currentUser.id === blog.user_id) setIsPoster(true)
+                    if (currentUser.id === blog.user_id) setIsPoster(true);
                 });
             } else {
                 r.json().then(message =>
@@ -43,18 +41,21 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
     if (status === "pending") return <Loading />;
     // if (currentUser.id === blog.user_id) {setIsPoster(true)}
     return (
+
         <>
-        {isPoster ? (
-            <Button
-                variant="dark"
-                size="sm"
-                className="m-2 position-absolute top-0 start-0"
-                onClick={() => setIsEditing(isEditing => !isEditing)}
-            >
-                ...
-            </Button>
-        ) : null}
-            
+            {isPoster ? (
+                <Button
+                    variant="dark"
+                    size="sm"
+                    className="m-2 position-absolute top-0 start-0"
+                    onClick={() => {
+                        setIsEditing(isEditing => !isEditing)
+                        setIsEditor(false)
+                    }}
+                >
+                    ...
+                </Button>
+            ) : null}
 
             <Button
                 variant="dark"
@@ -65,21 +66,33 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                 X
             </Button>
 
-            
             {isEditing ? (
                 <div className="m-3 pt-5 d-grid gap-2">
-                    <EditPost 
+                    {/* <EditPost 
                     setFetchRequest={setFetchRequest}
                     fetchRequest={fetchRequest}
-                    />
-                    <DeletePost 
-                       setFetchRequest={setFetchRequest}
-                       fetchRequest={fetchRequest} 
+                    /> */}
+                    <Button 
+                        variant="warning" 
+                        size="lg"
+                        onClick={() => setIsEditor(isEditor => !isEditor)}
+                    >
+                        Edit
+                    </Button>
+                    <DeletePost
+                        setFetchRequest={setFetchRequest}
+                        fetchRequest={fetchRequest}
                     />
                 </div>
             ) : null}
 
-            <article className="blog m-4">
+
+            {isEditor ? (
+                <Editor 
+                blog={blog}
+                />
+            ) : (
+               <article className="blog m-4">
                 <h1 className="b-title">{blog.title}</h1>
                 <small>
                     <p>{blog.date}</p>
@@ -89,8 +102,17 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                 </small>
                 <hr className="b-line" />
                 <div>{blog.content}</div>
-            </article>
+                </article> 
+            )}
+
+            
+
+
+
+
         </>
+
+
     );
 }
 

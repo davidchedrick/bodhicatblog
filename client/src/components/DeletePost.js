@@ -11,28 +11,22 @@ function DeletePost({ fetchRequest, setFetchRequest }) {
             headers: {
                 "Content-Type": "application/json",
             },
-            credentials: "include"
-        })
-            .then(res => {
-                if (res.ok) {
-                   setFetchRequest(fetchRequest => !fetchRequest) 
-                   history.push("/");
-                } 
-            })
-          
-        
+            credentials: "include",
+        }).then(res => {
+            if (res.ok) {
+                setFetchRequest(fetchRequest => !fetchRequest);
+                history.push("/");
+            }
+        });
     }
 
-    
-
-
-    return(
+    return (
         <>
-        <Button variant="danger" size="lg" onClick={() => deletePost(id)}>
-        Delete
-      </Button>
+            <Button variant="danger" size="lg" onClick={() => deletePost(id)}>
+                Delete
+            </Button>
         </>
-    )
+    );
 }
 
 export default DeletePost;

@@ -7,7 +7,7 @@ class Api::PostsController < ApplicationController
     end
 
     def show
-        render json: Post.find(params[:id])
+        render json: set_post 
     end
 
 
@@ -16,13 +16,19 @@ class Api::PostsController < ApplicationController
         render json: post, status: :created
     end
 
+    def update 
+        
+    end
+
     def destroy
-        post = Post.find(params[:id])
-        post.destroy
+        set_post.destroy
         head :no_content
     end
 
     private
+    def set_post 
+        @post = Post.find(params[:id])
+    end
 
     def post_params 
         params.permit(:title, :content, :user_id)

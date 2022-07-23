@@ -1,15 +1,13 @@
 import { Button } from "react-bootstrap";
 
 function EditPost() {
-
-
-    return(
+    return (
         <>
-        <Button variant="warning" size="lg">
-        Edit
-      </Button>
+            <Button href="/posts/:id" variant="warning" size="lg">
+                Edit
+            </Button>
         </>
-    )
+    );
 }
 
 export default EditPost;

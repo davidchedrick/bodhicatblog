@@ -3,6 +3,7 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import Blog from "./components/Blog";
 import AddPost from "./components/AddPost";
 import PostArea from "./components/PostArea";
+// import Editor from "./components/Editor";
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
     const history = useHistory();
@@ -44,6 +45,14 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
                     currentUser={currentUser}
                 />
             </Route>
+            {/* <Route exact path="/posts/:id/edit">
+                <Editor 
+                    posts={posts}
+                    setFetchRequest={setFetchRequest}
+                    fetchRequest={fetchRequest}
+                    currentUser={currentUser}
+                />
+            </Route> */}
             <Route exact path="/api/post">
                 <AddPost 
                     currentUser={currentUser}

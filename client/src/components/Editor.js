@@ -1,49 +1,22 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useHistory } from "react-router";
 
-function AddPost({ currentUser, fetchRequest, setFetchRequest }) {
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+function Editor({  blog  }) {
+   
+  
 
-    const history = useHistory();
+    const [title, setTitle] = useState(String(blog.title));
+    console.log('title: ', title);
+    const [content, setContent] = useState(String(blog.content));
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        createPost({
-            title,
-            content,
-            user_id: currentUser.id,
-        });
-    };
 
-    function createPost(formData) {
-        return fetch("/api/posts", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            credentials: "include",
-            body: JSON.stringify(formData),
-        })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                } else {
-                    return res.json().then(errors => Promise.reject(errors));
-                }
-            })
-            .then(post => {
-                console.log("post: ", post);
-                setFetchRequest(fetchRequest => !fetchRequest);
-                history.push("/");
-            });
-    }
+    // add fetch PATCH
 
     return (
+       
         <div className="m-2">
-            <h3 className=" d-flex justify-content-center">Write A New Blog</h3>
-            <Form onSubmit={handleSubmit}>
+            <h3 className=" d-flex justify-content-center">Edit Your Blog</h3>
+            <Form onSubmit={() => {}}>
                 <Form.Group className="mb-3" controlId="title">
                     <Form.Label>Title</Form.Label>
                     <Form.Control
@@ -79,4 +52,6 @@ function AddPost({ currentUser, fetchRequest, setFetchRequest }) {
     );
 }
 
-export default AddPost;
+export default Editor;
+
+
