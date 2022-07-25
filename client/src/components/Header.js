@@ -9,7 +9,7 @@ function Header({ currentUser, handleLogout }) {
                     +
                 </a>
 
-                <Navbar.Brand className="Header " href="">
+                <Navbar.Brand className="Header logo-text" href="">
                     BodhiCat Blogging!
                 </Navbar.Brand>
                 <Navbar.Text>

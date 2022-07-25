@@ -7,8 +7,8 @@ function TitleBar() {
             <Container>
                
 
-                <Navbar.Brand className="Header " href="">
-                    BodhiCat Blogging
+                <Navbar.Brand className="Header logo-text" href="">
+                    BodhiCat Blogging.
                 </Navbar.Brand>
                
             </Container>
