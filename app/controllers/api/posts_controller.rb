@@ -17,7 +17,8 @@ class Api::PostsController < ApplicationController
     end
 
     def update 
-        
+        set_post.update(post_params)
+        render json: set_post
     end
 
     def destroy

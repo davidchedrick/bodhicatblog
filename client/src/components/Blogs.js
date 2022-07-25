@@ -11,7 +11,7 @@ function Blogs({ post }) {
             </Card.Header>
             <Card.Body>
                 <Card.Title>{post.title}</Card.Title>
-                <Card.Text>{post.content}</Card.Text>
+                <Card.Text>{post.short_content}</Card.Text>
 
                 <Button 
                     variant="outline-danger"

@@ -1,22 +1,55 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useHistory, useParams } from "react-router";
 
-function Editor({  blog  }) {
+function Editor({  blog, fetchRequest, setFetchRequest  }) {
    
   
 
     const [title, setTitle] = useState(String(blog.title));
     console.log('title: ', title);
     const [content, setContent] = useState(String(blog.content));
+    const { id } = useParams();
+    const history = useHistory();
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        editPost({
+            title,
+            content,
+        });
+    };
 
-    // add fetch PATCH
+    function editPost(formData) {
+        return fetch(`/api/posts/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify(formData),
+        })
+            .then(res => {
+                if (res.ok) {
+                    console.log('res: ', res);
+                    
+                   
+                } else {
+                    return res.json().then(errors => Promise.reject(errors));
+                }
+            })
+            .then(post => {
+                console.log("post: ", post);
+                setFetchRequest(fetchRequest => !fetchRequest);
+                history.goBack()
+            });
+    }
 
     return (
        
         <div className="m-2">
             <h3 className=" d-flex justify-content-center">Edit Your Blog</h3>
-            <Form onSubmit={() => {}}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="title">
                     <Form.Label>Title</Form.Label>
                     <Form.Control

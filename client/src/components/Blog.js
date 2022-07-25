@@ -90,6 +90,8 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
             {isEditor ? (
                 <Editor 
                 blog={blog}
+                fetchRequest={fetchRequest}
+                setFetchRequest={setFetchRequest}
                 />
             ) : (
                <article className="blog m-4">
