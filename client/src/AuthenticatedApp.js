@@ -61,7 +61,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
                     fetchRequest={fetchRequest}
                 />
             </Route>
-            <Route exact path="/users/:id">
+            <Route exact path="/profiles/:id">
                 <Profile
                     currentUser={currentUser}
                     posts={posts}

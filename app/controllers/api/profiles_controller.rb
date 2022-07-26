@@ -1,13 +1,20 @@
 class Api::ProfilesController < ApplicationController
 
     def show
-        render json: Profile.find(params[:id]) 
+        profile = Profile.find(params[:id]) 
+        # byebug
+
+        render json: profile
     end
 
     private
 
-    def post_params 
-        params.permit(:name, :bio, :website, :picture, :user_id)
+    def profile_params 
+        params.permit(:name, :bio, :website, :picture)
+    end
+
+    def authorize
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
     end
 
 end

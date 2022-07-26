@@ -1,13 +1,14 @@
 import { Button, Card} from "react-bootstrap";
 
 function Blogs({ post }) {
-    
+    console.log('postsss: ', post);
+ 
 
     return (
         <Card className="text-center m-3">
             <Card.Header className="">
                 Written By:
-                <a href={`/users/${post.user_id}`} className="m-1 link-color">{post.author}</a>
+                <a href={`/profiles/${post.profile.id}`} className="m-1 link-color">{post.author}</a>
             </Card.Header>
             <Card.Body>
                 <Card.Title>{post.title}</Card.Title>

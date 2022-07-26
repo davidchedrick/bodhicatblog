@@ -13,7 +13,7 @@ function Header({ currentUser, handleLogout }) {
                     BodhiCat Blogging!
                 </Navbar.Brand>
                 <Navbar.Text>
-                    Signed in as: <a href={`/users/${currentUser.id}`}>{currentUser.username} </a>
+                    Signed in as: <a href={`/profiles/${currentUser.profile.id}`}>{currentUser.username} </a>
                 </Navbar.Text>
             </Container>
         </Navbar>

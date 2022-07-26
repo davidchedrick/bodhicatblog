@@ -16,6 +16,7 @@ class Api::UsersController < ApplicationController
       user = User.create(user_params)
       if user.valid?
         session[:user_id] = user.id
+        Profile.create(user_id: user.id)
         render json: user, include: :posts, status: :ok
       else
         render json: { error: user.errors }, status: :unprocessable_entity

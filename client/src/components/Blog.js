@@ -22,7 +22,6 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
         fetch(`/api/posts/${id}`).then(r => {
             if (r.ok) {
                 r.json().then(blog => {
-                    console.log("blog: ", blog.user_id);
                     setState({ blog, error: null, status: "resolved" });
                     if (currentUser.id === blog.user_id) setIsPoster(true);
                 });

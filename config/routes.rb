@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   namespace :api do
     resources :posts 
-    resources :profile, only: [:show]
+    resources :profiles, only: [:show]
     
     get "/me", to: "users#show"
     post "/signup", to: "users#create"
