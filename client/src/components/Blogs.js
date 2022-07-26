@@ -7,7 +7,7 @@ function Blogs({ post }) {
         <Card className="text-center m-3">
             <Card.Header className="">
                 Written By:
-                <a href="#login" className="m-1 link-color">{post.author}</a>
+                <a href={`/users/${post.user_id}`} className="m-1 link-color">{post.author}</a>
             </Card.Header>
             <Card.Body>
                 <Card.Title>{post.title}</Card.Title>

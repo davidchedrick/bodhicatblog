@@ -6,7 +6,7 @@ import Editor from "./Editor";
 import Loading from "./Loading";
 
 function Blog({ fetchRequest, setFetchRequest, currentUser }) {
-    console.log("currentUser: ", currentUser.id);
+    
     const [{ blog, error, status }, setState] = useState({
         article: null,
         error: null,

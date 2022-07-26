@@ -9,11 +9,11 @@ function Header({ currentUser, handleLogout }) {
                     +
                 </a>
 
-                <Navbar.Brand className="Header logo-text" href="">
+                <Navbar.Brand className="Header logo-text" href="/">
                     BodhiCat Blogging!
                 </Navbar.Brand>
                 <Navbar.Text>
-                    Signed in as: <a href="#login">{currentUser.username} </a>
+                    Signed in as: <a href={`/users/${currentUser.id}`}>{currentUser.username} </a>
                 </Navbar.Text>
             </Container>
         </Navbar>

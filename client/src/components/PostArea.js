@@ -3,6 +3,7 @@ import Header from "./Header";
 
 
 function PostArea({currentUser, posts, handleLogout}) {
+  console.log('posts: ', posts);
 
     return (
         <>
