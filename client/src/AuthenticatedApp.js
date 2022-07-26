@@ -65,6 +65,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
                 <Profile
                     currentUser={currentUser}
                     posts={posts}
+                    handleLogout={handleLogout}
                     // setFetchRequest={setFetchRequest}
                     // fetchRequest={fetchRequest}
                 />

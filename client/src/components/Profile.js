@@ -4,17 +4,20 @@ import Header from "./Header"
 import Loading from "./Loading";
 
 
-function Profile({ currentUser, posts }) {
+function Profile({ currentUser, handleLogout }) {
   
     console.log('currentUser: ', currentUser);
+    const [isCurrentUser, setIsCurrentUser] = useState(false)
+    console.log('isCurrentUser: ', isCurrentUser);
     const { id } = useParams();
-    console.log('params id: ', id);
+    
   
     const [{ profile, error, status }, setState] = useState({
         profile: null,
         error: null,
         status: "pending",
     });
+
   
     useEffect(() => {
         fetch(`/api/profiles/${id}`).then(r => {
@@ -23,6 +26,8 @@ function Profile({ currentUser, posts }) {
                     console.log('profile: ', profile);
                     
                     setState({ profile, error: null, status: "resolved" });
+                    currentUser.profile.id === profile.id ? setIsCurrentUser(true) : setIsCurrentUser(false)
+
                     // if (currentUser.id === blog.user_id) setIsPoster(true);
                 });
             } else {
@@ -36,16 +41,25 @@ function Profile({ currentUser, posts }) {
                 );
             }
         });
-    }, [id]);
+    }, [id, currentUser]);
 
     if (status === "pending") return <Loading />;
 
     return(
         <>
-        <Header currentUser={currentUser} />
-        <h1>profile view {profile.name}</h1>
+        <Header currentUser={currentUser} handleLogout={handleLogout} />
+        
 
-        <h1>current user {currentUser.username}</h1>
+        
+
+        {isCurrentUser ? (
+            <h1>current user {currentUser.username}</h1>
+        ) : (
+            <h1>profile view {profile.name}</h1>
+        )}
+
+
+
         </>
     )
 }
