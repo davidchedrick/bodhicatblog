@@ -7,10 +7,13 @@ import UserPosts from "./UserPost";
 import defaultPic from "../img/default-user-pic.png";
 
 function Profile({ currentUser, handleLogout }) {
+    console.log('currentUser: ', currentUser);
     const [isCurrentUser, setIsCurrentUser] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
-    const [title, setTitle] = useState(String(currentUser.title));
-    const [content, setContent] = useState(String(currentUser.content));
+    const [name, setName] = useState(String(currentUser.profile.name));
+    const [website, setWebsite] = useState(String(currentUser.profile.website));
+    const [bio, setBio] = useState(String(currentUser.profile.bio));
+    const [picture, setPicture] = useState(String(currentUser.profile.picture));
     const [fetchRequest, setFetchRequest] = useState(false);
     const { id } = useParams();
     const history = useHistory();
@@ -18,8 +21,8 @@ function Profile({ currentUser, handleLogout }) {
     const handleSubmit = e => {
         e.preventDefault();
         editPost({
-            title,
-            content,
+            name,
+            website,
         });
     };
 
@@ -118,48 +121,70 @@ function Profile({ currentUser, handleLogout }) {
 
             {isEditing ? (
                 <>
-                    {" "}
-                    <div className="screenText visible">
-                        <Button
-                            className="danger position-absolute top-0 end-0"
-                            onClick={() => setIsEditing(isEditing => !isEditing)}
-                        >
-                            X
-                        </Button>
-                    </div>
+                    <div className="screenText">
+
                     <div>
                     <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Title</Form.Label>
+                <Form.Group className="mb-3" controlId="name">
+                    <Form.Label>Name</Form.Label>
                     <Form.Control
-                        placeholder="Title"
+                        placeholder="name"
                         type="text"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                        name="title"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        name="name"
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Content</Form.Label>
+                <Form.Group className="mb-3" controlId="website">
+                    <Form.Label>Website</Form.Label>
+                    <Form.Control
+                        placeholder="Write Blog Here...."
+                        type="text"
+                        value={website}
+                        onChange={e => setWebsite(e.target.value)}
+                        name="website"
+                    />
+                </Form.Group>
+
+
+                <Form.Group className="mb-3" controlId="picture">
+                    <Form.Label>Picture</Form.Label>
+                    <Form.Control
+                        placeholder="Write Blog Here...."
+                        type="text"
+                        value={picture}
+                        onChange={e => setPicture(e.target.value)}
+                        name="picture"
+                    />
+                </Form.Group>
+                
+
+                <Form.Group className="mb-3" controlId="bio">
+                    <Form.Label>Bio</Form.Label>
                     <Form.Control
                         placeholder="Write Blog Here...."
                         as="textarea"
                         type="text"
-                        value={content}
-                        onChange={e => setContent(e.target.value)}
-                        name="content"
+                        value={bio}
+                        onChange={e => setBio(e.target.value)}
+                        name="bio"
                     />
                 </Form.Group>
 
                 <Button variant="dark" type="submit">
                     Submit
                 </Button>
-
-                <a href={"/"} className="btn btn-dark m-1">
+                {" "}
+                <Button 
+                variant="dark" 
+                onClick={() => setIsEditing(isEditing => !isEditing)}
+                >
                     Cancel
-                </a>
+                </Button>
+
             </Form>
+                    </div>
                     </div>
                 </>
             ) : null}

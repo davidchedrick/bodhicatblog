@@ -106,32 +106,28 @@
     right: 0;
     bottom: 0;
     z-index: 100;
+    
     display: none;
     position: fixed;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: "Rock Salt", cursive;
+   
     transition: background-color 500ms, font-size 500ms;
-    
-}
-
-.screenTextSmall {
-    font-size: 0.7em;
-}
-
-.screenText.visible {
+    margin-top: 65px;
     display: flex;
     animation: overlay-grow 100ms forwards;
 }
 
+
+
 @keyframes overlay-grow {
     from {
         background-color: rgba(255, 255, 255, 0);
-        font-size: 0;
+       
     }
     to {
-        background-color: rgb(249, 245, 250);
-        font-size: 5em;
+        background-color: rgb(253, 253, 253);
+        
     }
 }
