@@ -2,8 +2,7 @@ import { Button, Card } from "react-bootstrap"
 
 
 function UserPosts({ profile, currentUser }) {
-    console.log('currentUser: ', currentUser);
-    console.log('profile: ', profile.user_posts);
+
     const postArea = profile.user_posts.map(post => (
 <Card className="text-center m-3">
             <Card.Header className="">
