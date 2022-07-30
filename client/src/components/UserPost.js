@@ -2,12 +2,14 @@ import { Button, Card } from "react-bootstrap"
 
 
 function UserPosts({ profile, currentUser }) {
-
+    console.log('profile: ', profile);
+    console.log('currentUser: ', currentUser);
+    
     const postArea = profile.user_posts.map(post => (
-<Card className="text-center m-3">
+        <Card  key={post.id} className="text-center m-3">
             <Card.Header className="">
-                Written By:
-                <a href={`/profiles/${post.id}`} className="m-1 link-color">{post.author}</a>
+                Written By: 
+                <a href={`/profiles/${profile.id}`} className="m-1 link-color">{currentUser.username}</a>
             </Card.Header>
             <Card.Body>
                 <Card.Title>{post.title}</Card.Title>

@@ -2,8 +2,12 @@ class Api::ProfilesController < ApplicationController
 
     def show
         profile = Profile.find(params[:id]) 
-        # byebug
+        render json: profile
+    end
 
+    def update 
+        profile = Profile.find(params[:id])
+        profile.update(profile_params)
         render json: profile
     end
 
