@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import Header from "./Header";
 import Loading from "./Loading";
 import UserPosts from "./UserPost";
+import UserProfile from "./UserProfile";
 import defaultPic from "../img/default-user-pic.png";
 import { Link } from "react-router-dom";
 
@@ -114,7 +115,36 @@ function Profile({ currentUser, handleLogout }) {
                     <UserPosts profile={profile} currentUser={currentUser} />
                 </>
             ) : (
-                <h1>profile view {profile.name}</h1>
+                <>
+                <Container className="d-flex flex-row mb-3 justify-content-between">
+            
+                <div className="d-flex flex-column mb-3">
+                    <h1>Name: {profile.name}</h1>
+                    <Link to={{ pathname: "https://example.s" }} target="_blank" />
+                    <h1>Website: <Link to={{ pathname: `https://${profile.website}` }} target="_blank">{profile.website}</Link></h1>
+                    <h1>Bio: {profile.bio}</h1>
+                </div>
+                <div className="d-flex flex-column mb-3 ">
+                    <span
+                        className="align-self-end"
+                        type="button"
+                        onClick={() =>
+                            setIsEditing(isEditing => !isEditing)
+                        }
+                    >
+                        ✏️
+                    </span>
+
+                    <img
+                        src={profile.picture || defaultPic}
+                        alt={`of ${profile.name}`}
+                        className="avatar"
+                    ></img>
+                </div>
+            </Container>
+
+            <UserProfile profile={profile} currentUser={currentUser} />
+            </>
             )}
 
             {isEditing ? (
