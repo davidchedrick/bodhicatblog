@@ -9,7 +9,7 @@ import defaultPic from "../img/default-user-pic.png";
 import { Link } from "react-router-dom";
 
 function Profile({ currentUser, handleLogout }) {
-    console.log("currentUser: ", currentUser);
+   
     const [isCurrentUser, setIsCurrentUser] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [name, setName] = useState(currentUser.profile.name);

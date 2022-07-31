@@ -10,4 +10,8 @@ class Post < ApplicationRecord
     user.username
   end
 
+  def short_content
+    "#{self.content[0..175]}..."
+  end
+
 end

@@ -7,7 +7,6 @@ function Editor({  blog, fetchRequest, setFetchRequest  }) {
   
 
     const [title, setTitle] = useState(String(blog.title));
-    console.log('title: ', title);
     const [content, setContent] = useState(String(blog.content));
     const { id } = useParams();
     const history = useHistory();

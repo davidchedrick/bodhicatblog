@@ -2,8 +2,6 @@ import { Button, Card } from "react-bootstrap"
 
 
 function UserPosts({ profile, currentUser }) {
-    console.log('profile: ', profile);
-    console.log('currentUser: ', currentUser);
     
     const postArea = profile.user_posts.map(post => (
         <Card  key={post.id} className="text-center m-3">

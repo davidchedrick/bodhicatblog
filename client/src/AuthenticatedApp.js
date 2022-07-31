@@ -46,14 +46,6 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
                     currentUser={currentUser}
                 />
             </Route>
-            {/* <Route exact path="/posts/:id/edit">
-                <Editor 
-                    posts={posts}
-                    setFetchRequest={setFetchRequest}
-                    fetchRequest={fetchRequest}
-                    currentUser={currentUser}
-                />
-            </Route> */}
             <Route exact path="/api/post">
                 <AddPost 
                     currentUser={currentUser}
@@ -64,10 +56,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
             <Route exact path="/profiles/:id">
                 <Profile
                     currentUser={currentUser}
-                    posts={posts}
                     handleLogout={handleLogout}
-                    // setFetchRequest={setFetchRequest}
-                    // fetchRequest={fetchRequest}
                 />
             </Route>
         </Switch>
