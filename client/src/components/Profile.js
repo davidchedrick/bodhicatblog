@@ -9,7 +9,6 @@ import defaultPic from "../img/default-user-pic.png";
 import { Link } from "react-router-dom";
 
 function Profile({ currentUser, handleLogout }) {
-   
     const [isCurrentUser, setIsCurrentUser] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [name, setName] = useState(currentUser.profile.name);
@@ -18,7 +17,6 @@ function Profile({ currentUser, handleLogout }) {
     const [picture, setPicture] = useState(currentUser.profile.picture);
     const [fetchRequest, setFetchRequest] = useState(false);
     const { id } = useParams();
-   
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -46,8 +44,8 @@ function Profile({ currentUser, handleLogout }) {
                         : setIsCurrentUser(false);
                 });
             } else {
-                r.json().then(
-                    message => setState({
+                r.json().then(message =>
+                    setState({
                         blog: null,
                         error: message.error,
                         status: "rejected",
@@ -75,7 +73,7 @@ function Profile({ currentUser, handleLogout }) {
             })
             .then(profile => {
                 setFetchRequest(fetchRequest => !fetchRequest);
-                setIsEditing(isEditing => !isEditing)
+                setIsEditing(isEditing => !isEditing);
             });
     }
 
@@ -90,8 +88,21 @@ function Profile({ currentUser, handleLogout }) {
                     <Container className="d-flex flex-row mb-3 justify-content-between">
                         <div className="d-flex flex-column mb-3">
                             <h1>Name: {profile.name}</h1>
-                            <Link to={{ pathname: "https://example.s" }} target="_blank" />
-                            <h1>Website: <Link to={{ pathname: `https://${profile.website}` }} target="_blank">{profile.website}</Link></h1>
+                            <Link
+                                to={{ pathname: "https://example.s" }}
+                                target="_blank"
+                            />
+                            <h1>
+                                Website:{" "}
+                                <Link
+                                    to={{
+                                        pathname: `https://${profile.website}`,
+                                    }}
+                                    target="_blank"
+                                >
+                                    {profile.website}
+                                </Link>
+                            </h1>
                             <h1>Bio: {profile.bio}</h1>
                         </div>
                         <div className="d-flex flex-column mb-3 ">
@@ -116,35 +127,47 @@ function Profile({ currentUser, handleLogout }) {
                 </>
             ) : (
                 <>
-                <Container className="d-flex flex-row mb-3 justify-content-between">
-            
-                <div className="d-flex flex-column mb-3">
-                    <h1>Name: {profile.name}</h1>
-                    <Link to={{ pathname: "https://example.s" }} target="_blank" />
-                    <h1>Website: <Link to={{ pathname: `https://${profile.website}` }} target="_blank">{profile.website}</Link></h1>
-                    <h1>Bio: {profile.bio}</h1>
-                </div>
-                <div className="d-flex flex-column mb-3 ">
-                    <span
-                        className="align-self-end"
-                        type="button"
-                        onClick={() =>
-                            setIsEditing(isEditing => !isEditing)
-                        }
-                    >
-                        ✏️
-                    </span>
+                    <Container className="d-flex flex-row mb-3 justify-content-between">
+                        <div className="d-flex flex-column mb-3">
+                            <h1>Name: {profile.name}</h1>
+                            <Link
+                                to={{ pathname: "https://example.s" }}
+                                target="_blank"
+                            />
+                            <h1>
+                                Website:{" "}
+                                <Link
+                                    to={{
+                                        pathname: `https://${profile.website}`,
+                                    }}
+                                    target="_blank"
+                                >
+                                    {profile.website}
+                                </Link>
+                            </h1>
+                            <h1>Bio: {profile.bio}</h1>
+                        </div>
+                        <div className="d-flex flex-column mb-3 ">
+                            <span
+                                className="align-self-end"
+                                type="button"
+                                onClick={() =>
+                                    setIsEditing(isEditing => !isEditing)
+                                }
+                            >
+                                ✏️
+                            </span>
 
-                    <img
-                        src={profile.picture || defaultPic}
-                        alt={`of ${profile.name}`}
-                        className="avatar"
-                    ></img>
-                </div>
-            </Container>
+                            <img
+                                src={profile.picture || defaultPic}
+                                alt={`of ${profile.name}`}
+                                className="avatar"
+                            ></img>
+                        </div>
+                    </Container>
 
-            <UserProfile profile={profile} currentUser={currentUser} />
-            </>
+                    <UserProfile profile={profile} currentUser={currentUser} />
+                </>
             )}
 
             {isEditing ? (

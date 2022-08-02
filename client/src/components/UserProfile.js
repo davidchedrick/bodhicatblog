@@ -1,37 +1,34 @@
 import { Button, Card } from "react-bootstrap";
 
-function userProfile({profile, currentUser}) {
-    console.log('profile: ', profile);
-    
-    const postArea = profile.user_posts.map(post => (
-        
-        <Card  key={post.id} className="text-center m-3">
-            <Card.Header className="">
-                Written By: 
-                <a href={`/profiles/${profile.id}`} className="m-1 link-color">{profile.name}</a>
-            </Card.Header>
-            <Card.Body>
-                <Card.Title>{post.title}</Card.Title>
-                <Card.Text>{post.short_content}</Card.Text>
+function userProfile({ profile, currentUser }) {
+    console.log("profile: ", profile);
 
-                <Button 
-                    variant="outline-danger"
-                    href={`/posts/${post.id}`}
-                >
-                    Read
-                </Button>
+    const postArea = profile.user_posts
+        .map(post => (
+            <Card key={post.id} className="text-center m-3">
+                <Card.Header className="">
+                    Written By:
+                    <a
+                        href={`/profiles/${profile.id}`}
+                        className="m-1 link-color"
+                    >
+                        {profile.name}
+                    </a>
+                </Card.Header>
+                <Card.Body>
+                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Text>{post.short_content}</Card.Text>
 
-            </Card.Body>
-            <Card.Footer className="text-muted">{post.date}</Card.Footer>
-        </Card>
-    )).reverse()
+                    <Button variant="outline-danger" href={`/posts/${post.id}`}>
+                        Read
+                    </Button>
+                </Card.Body>
+                <Card.Footer className="text-muted">{post.date}</Card.Footer>
+            </Card>
+        ))
+        .reverse();
 
-    return(
-        <>
-            {postArea}
-        </>
-    )
-   
+    return <>{postArea}</>;
 }
 
 export default userProfile;

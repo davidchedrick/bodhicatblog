@@ -2,10 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useHistory, useParams } from "react-router";
 
-function Editor({  blog, fetchRequest, setFetchRequest  }) {
-   
-  
-
+function Editor({ blog, fetchRequest, setFetchRequest }) {
     const [title, setTitle] = useState(String(blog.title));
     const [content, setContent] = useState(String(blog.content));
     const { id } = useParams();
@@ -30,9 +27,7 @@ function Editor({  blog, fetchRequest, setFetchRequest  }) {
         })
             .then(res => {
                 if (res.ok) {
-                    console.log('res: ', res);
-                    
-                   
+                    console.log("res: ", res);
                 } else {
                     return res.json().then(errors => Promise.reject(errors));
                 }
@@ -40,12 +35,11 @@ function Editor({  blog, fetchRequest, setFetchRequest  }) {
             .then(post => {
                 console.log("post: ", post);
                 setFetchRequest(fetchRequest => !fetchRequest);
-                history.goBack()
+                history.goBack();
             });
     }
 
     return (
-       
         <div className="m-2">
             <h3 className=" d-flex justify-content-center">Edit Your Blog</h3>
             <Form onSubmit={handleSubmit}>
@@ -85,5 +79,3 @@ function Editor({  blog, fetchRequest, setFetchRequest  }) {
 }
 
 export default Editor;
-
-

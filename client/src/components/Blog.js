@@ -6,7 +6,6 @@ import Editor from "./Editor";
 import Loading from "./Loading";
 
 function Blog({ fetchRequest, setFetchRequest, currentUser }) {
-    
     const [{ blog, error, status }, setState] = useState({
         article: null,
         error: null,
@@ -40,7 +39,6 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
     if (status === "pending") return <Loading />;
     // if (currentUser.id === blog.user_id) {setIsPoster(true)}
     return (
-
         <>
             {isPoster ? (
                 <Button
@@ -48,8 +46,8 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                     size="sm"
                     className="m-2 position-absolute top-0 start-0"
                     onClick={() => {
-                        setIsEditing(isEditing => !isEditing)
-                        setIsEditor(false)
+                        setIsEditing(isEditing => !isEditing);
+                        setIsEditor(false);
                     }}
                 >
                     ...
@@ -71,8 +69,8 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                     setFetchRequest={setFetchRequest}
                     fetchRequest={fetchRequest}
                     /> */}
-                    <Button 
-                        variant="warning" 
+                    <Button
+                        variant="warning"
                         size="lg"
                         onClick={() => setIsEditor(isEditor => !isEditor)}
                     >
@@ -85,35 +83,26 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                 </div>
             ) : null}
 
-
             {isEditor ? (
-                <Editor 
-                blog={blog}
-                fetchRequest={fetchRequest}
-                setFetchRequest={setFetchRequest}
+                <Editor
+                    blog={blog}
+                    fetchRequest={fetchRequest}
+                    setFetchRequest={setFetchRequest}
                 />
             ) : (
-               <article className="blog m-4">
-                <h1 className="b-title">{blog.title}</h1>
-                <small>
-                    <p>{blog.date}</p>
-                    <p>
-                        <em>Written by {blog.author}</em>
-                    </p>
-                </small>
-                <hr className="b-line" />
-                <div>{blog.content}</div>
-                </article> 
+                <article className="blog m-4">
+                    <h1 className="b-title">{blog.title}</h1>
+                    <small>
+                        <p>{blog.date}</p>
+                        <p>
+                            <em>Written by {blog.author}</em>
+                        </p>
+                    </small>
+                    <hr className="b-line" />
+                    <div>{blog.content}</div>
+                </article>
             )}
-
-            
-
-
-
-
         </>
-
-
     );
 }
 

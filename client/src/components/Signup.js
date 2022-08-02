@@ -8,7 +8,7 @@ import TitleBar from "./TitleBar";
 function Signup({ setCurrentUser }) {
     const history = useHistory();
     const [userError, setUserError] = useState(false);
-  
+
     const [passwordError, setPasswordError] = useState(false);
 
     const [errorMessage, setErrorMessage] = useState("");
@@ -36,17 +36,15 @@ function Signup({ setCurrentUser }) {
                 });
             } else {
                 res.json().then(errors => {
+                    if (errors.error.username) {
+                        setUserError(true);
+                        setErrorMessage("Username Unavailable");
+                    }
 
-                    if(errors.error.username){
-                       setUserError(true); 
-                       setErrorMessage('Username Unavailable')
+                    if (errors.error.password_confirmation) {
+                        setPasswordError(true);
+                        setErrorMessage(errors.error.password_confirmation[0]);
                     }
-              
-                    if(errors.error.password_confirmation) {
-                       setPasswordError(true)
-                       setErrorMessage(errors.error.password_confirmation[0])
-                    }
-                   
                 });
             }
         });
@@ -63,7 +61,7 @@ function Signup({ setCurrentUser }) {
                     {userError ? (
                         <Alert variant="danger">{errorMessage}</Alert>
                     ) : null}
-                  
+
                     {passwordError ? (
                         <Alert variant="danger">Password Doesnt Match</Alert>
                     ) : null}
@@ -78,9 +76,9 @@ function Signup({ setCurrentUser }) {
                         name="username"
                         value={username}
                         onChange={e => {
-                            setUsername(e.target.value)
-                            setUserError(false)
-                            setPasswordError(false)
+                            setUsername(e.target.value);
+                            setUserError(false);
+                            setPasswordError(false);
                         }}
                     />
 
@@ -93,9 +91,9 @@ function Signup({ setCurrentUser }) {
                         name=""
                         value={password}
                         onChange={e => {
-                            setPassword(e.target.value)
-                            setPasswordError(false)
-                            setUserError(false)
+                            setPassword(e.target.value);
+                            setPasswordError(false);
+                            setUserError(false);
                         }}
                     />
 
@@ -108,9 +106,9 @@ function Signup({ setCurrentUser }) {
                         name="password_confirmation"
                         value={passwordConfirmation}
                         onChange={e => {
-                            setPasswordConfirmation(e.target.value)
-                            setPasswordError(false)
-                            setUserError(false)
+                            setPasswordConfirmation(e.target.value);
+                            setPasswordError(false);
+                            setUserError(false);
                         }}
                     />
 
