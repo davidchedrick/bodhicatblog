@@ -1,6 +1,6 @@
 import Blogs from "./Blogs";
 import Header from "./Header";
-import Loading from "./Loading";
+
 
 function PostArea({ currentUser, posts, handleLogout }) {
     console.log('currentUser: ', currentUser);
@@ -9,7 +9,7 @@ function PostArea({ currentUser, posts, handleLogout }) {
         <>
             <Header currentUser={currentUser} handleLogout={handleLogout} />
             
-            {posts.length === 0 ? <Loading /> :
+            {posts.length === 0 ? <h1>Add First Post!</h1> :
              <div>
                 {posts.map(post => (
                     <Blogs key={post.id} post={post} />
