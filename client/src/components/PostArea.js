@@ -3,6 +3,7 @@ import Header from "./Header";
 import Loading from "./Loading";
 
 function PostArea({ currentUser, posts, handleLogout }) {
+    console.log('currentUser: ', currentUser);
     console.log('posts: ', posts.length);
     return (
         <>
