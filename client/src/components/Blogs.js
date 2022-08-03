@@ -10,12 +10,12 @@ function Blogs({ post }) {
                 <Card className="text-center m-3">
                     <Card.Header className="">
                         Written By:
-                        <a
+                        {/* <a
                             href={`/profiles/${post.profile.id}`}
                             className="m-1 link-color"
                         >
                             {post.author}
-                        </a>
+                        </a> */}
                     </Card.Header>
                     <Card.Body>
                         <Card.Title>{post.title}</Card.Title>
