@@ -37,7 +37,7 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
     }, [id, currentUser.id]);
 
     if (status === "pending") return <Loading />;
-    // if (currentUser.id === blog.user_id) {setIsPoster(true)}
+  
     return (
         <>
             {isPoster ? (
@@ -65,10 +65,6 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
 
             {isEditing ? (
                 <div className="m-3 pt-5 d-grid gap-2">
-                    {/* <EditPost 
-                    setFetchRequest={setFetchRequest}
-                    fetchRequest={fetchRequest}
-                    /> */}
                     <Button
                         variant="warning"
                         size="lg"
