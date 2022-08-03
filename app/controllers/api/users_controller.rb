@@ -3,16 +3,10 @@ class Api::UsersController < ApplicationController
     skip_before_action :confirm_authentication
     
     def show
-      
-      if current_user
-        render json: current_user, status: :ok
-      else
-        render json: { error: 'No Active Session' }, status: :unauthorized
-      end
+      render json: current_user, status: :ok
     end
 
     def create
-      
       user = User.create(user_params)
       if user.valid?
         session[:user_id] = user.id

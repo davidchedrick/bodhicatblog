@@ -4,7 +4,7 @@ import Blog from "./components/Blog";
 import AddPost from "./components/AddPost";
 import PostArea from "./components/PostArea";
 import Profile from "./components/Profile";
-// import Editor from "./components/Editor";
+
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
     const history = useHistory();
