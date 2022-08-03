@@ -4,6 +4,6 @@ class FallbackController < ActionController::Base
 
   def index
     # React app index page
-    render file: 'https://bodhi-cat-blog.herokuapp.com/'
+    render file: 'public/index.html'
   end
 end
