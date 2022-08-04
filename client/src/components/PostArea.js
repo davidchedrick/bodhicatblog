@@ -2,8 +2,7 @@ import Blogs from "./Blogs";
 import Header from "./Header";
 
 function PostArea({ currentUser, posts, handleLogout }) {
-    console.log("currentUser: ", currentUser);
-    console.log("posts: ", posts.length);
+ 
     return (
         <>
             <Header currentUser={currentUser} handleLogout={handleLogout} />

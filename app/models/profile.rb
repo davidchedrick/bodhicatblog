@@ -8,6 +8,4 @@ class Profile < ApplicationRecord
         user.posts
     end
 
-   
-
 end

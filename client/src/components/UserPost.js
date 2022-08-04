@@ -1,6 +1,8 @@
 import { Button, Card } from "react-bootstrap";
 
 function UserPosts({ profile, currentUser }) {
+    console.log('profile: ', profile);
+ 
     const postArea = profile.user_posts.map(post => (
         <Card key={post.id} className="text-center m-3">
             <Card.Header className="">
@@ -11,7 +13,7 @@ function UserPosts({ profile, currentUser }) {
             </Card.Header>
             <Card.Body>
                 <Card.Title>{post.title}</Card.Title>
-                <Card.Text>{post.short_content}</Card.Text>
+                <Card.Text>{profile.short_content}</Card.Text>
 
                 <Button variant="outline-danger" href={`/posts/${post.id}`}>
                     Read
@@ -19,7 +21,7 @@ function UserPosts({ profile, currentUser }) {
             </Card.Body>
             <Card.Footer className="text-muted">{post.date}</Card.Footer>
         </Card>
-    ));
+    ))
 
     return <>{postArea}</>;
 }

@@ -1,7 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 
 function userProfile({ profile, currentUser }) {
-    console.log("profile: ", profile);
+   
 
     const postArea = profile.user_posts
         .map(post => (
