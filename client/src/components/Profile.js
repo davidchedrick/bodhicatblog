@@ -106,6 +106,7 @@ function Profile({ currentUser, handleLogout }) {
                             <h1>Bio: {profile.bio}</h1>
                         </div>
                         <div className="d-flex flex-column mb-3 ">
+                            
                             <span
                                 className="align-self-end"
                                 type="button"

@@ -1,6 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 
-function userProfile({ profile, currentUser }) {
+function userProfile({ profile }) {
    
 
     const postArea = profile.user_posts

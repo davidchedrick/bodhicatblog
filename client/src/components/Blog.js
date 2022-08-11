@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import Comments from "./Comments";
 import DeletePost from "./DeletePost";
 import Editor from "./Editor";
 import Loading from "./Loading";
@@ -21,6 +22,7 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
         fetch(`/api/posts/${id}`).then(r => {
             if (r.ok) {
                 r.json().then(blog => {
+                    console.log('blog: ', blog);
                     setState({ blog, error: null, status: "resolved" });
                     if (currentUser.id === blog.user_id) setIsPoster(true);
                 });
@@ -86,6 +88,7 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                     setFetchRequest={setFetchRequest}
                 />
             ) : (
+                <>
                 <article className="blog m-4">
                     <h1 className="b-title">{blog.title}</h1>
                     <small>
@@ -97,6 +100,8 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                     <hr className="b-line" />
                     <div>{blog.content}</div>
                 </article>
+                <Comments />
+                </>
             )}
         </>
     );
