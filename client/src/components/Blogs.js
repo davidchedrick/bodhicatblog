@@ -1,10 +1,12 @@
 import { Button, Card } from "react-bootstrap";
 
 function Blogs({ post }) {
+   
     return (
         
         <Card className="text-center m-3">
             <Card.Header className="">
+
                 Written By:
                 <a
                     href={`/profiles/${post.profile.id}`}

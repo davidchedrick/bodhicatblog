@@ -7,7 +7,7 @@ class Api::PostsController < ApplicationController
     end
 
     def show
-        render json: set_post 
+        render json: set_post
     end
 
 

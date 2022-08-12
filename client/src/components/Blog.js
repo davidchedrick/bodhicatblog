@@ -36,7 +36,7 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                 );
             }
         });
-    }, [id, currentUser.id]);
+    }, [id, currentUser.id, fetchRequest]);
 
     if (status === "pending") return <Loading />;
   
@@ -100,7 +100,12 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                     <hr className="b-line" />
                     <div>{blog.content}</div>
                 </article>
-                <Comments />
+                <Comments 
+                    blog={blog}
+                    currentUser={currentUser}
+                    setFetchRequest={setFetchRequest}
+                    fetchRequest={fetchRequest}
+                />
                 </>
             )}
         </>
