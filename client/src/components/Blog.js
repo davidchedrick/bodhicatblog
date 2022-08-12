@@ -22,7 +22,7 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
         fetch(`/api/posts/${id}`).then(r => {
             if (r.ok) {
                 r.json().then(blog => {
-                    console.log('blog: ', blog);
+                    console.log("blog: ", blog);
                     setState({ blog, error: null, status: "resolved" });
                     if (currentUser.id === blog.user_id) setIsPoster(true);
                 });
@@ -39,7 +39,7 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
     }, [id, currentUser.id, fetchRequest]);
 
     if (status === "pending") return <Loading />;
-  
+
     return (
         <>
             {isPoster ? (
@@ -89,23 +89,23 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                 />
             ) : (
                 <>
-                <article className="blog m-4">
-                    <h1 className="b-title">{blog.title}</h1>
-                    <small>
-                        <p>{blog.date}</p>
-                        <p>
-                            <em>Written by {blog.author}</em>
-                        </p>
-                    </small>
-                    <hr className="b-line" />
-                    <div>{blog.content}</div>
-                </article>
-                <Comments 
-                    blog={blog}
-                    currentUser={currentUser}
-                    setFetchRequest={setFetchRequest}
-                    fetchRequest={fetchRequest}
-                />
+                    <article className="blog m-4">
+                        <h1 className="b-title">{blog.title}</h1>
+                        <small>
+                            <p>{blog.date}</p>
+                            <p>
+                                <em>Written by {blog.author}</em>
+                            </p>
+                        </small>
+                        <hr className="b-line" />
+                        <div>{blog.content}</div>
+                    </article>
+                    <Comments
+                        blog={blog}
+                        currentUser={currentUser}
+                        setFetchRequest={setFetchRequest}
+                        fetchRequest={fetchRequest}
+                    />
                 </>
             )}
         </>

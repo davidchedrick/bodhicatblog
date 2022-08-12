@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import AuthenticatedApp from "./AuthenticatedApp";
 import UnauthenticatedApp from "./UnauthenticatedApp";
-import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
-
     const [authChecked, setAuthChecked] = useState(false);
 
     useEffect(() => {
@@ -26,19 +25,18 @@ function App() {
     if (!authChecked) {
         return <div></div>;
     }
+
     return (
-        <>
-            <Router>
-                {currentUser ? (
-                    <AuthenticatedApp
-                        setCurrentUser={setCurrentUser}
-                        currentUser={currentUser}
-                    />
-                ) : (
-                    <UnauthenticatedApp setCurrentUser={setCurrentUser} />
-                )}
-            </Router>
-        </>
+        <Router>
+            {currentUser ? (
+                <AuthenticatedApp
+                    setCurrentUser={setCurrentUser}
+                    currentUser={currentUser}
+                />
+            ) : (
+                <UnauthenticatedApp setCurrentUser={setCurrentUser} />
+            )}
+        </Router>
     );
 }
 

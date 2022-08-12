@@ -5,7 +5,6 @@ import AddPost from "./components/AddPost";
 import PostArea from "./components/PostArea";
 import Profile from "./components/Profile";
 
-
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
     const history = useHistory();
     const [posts, setPosts] = useState([]);

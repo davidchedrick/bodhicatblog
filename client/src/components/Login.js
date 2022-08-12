@@ -5,11 +5,12 @@ import logo from "../img/tyComp.png";
 import TitleBar from "./TitleBar";
 
 function Login({ setCurrentUser }) {
-    const history = useHistory();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [userError, setUserError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const history = useHistory();
+
     const handleSubmit = event => {
         event.preventDefault();
         fetch("/api/login", {
@@ -36,6 +37,7 @@ function Login({ setCurrentUser }) {
             }
         });
     };
+
     return (
         <>
             <TitleBar />

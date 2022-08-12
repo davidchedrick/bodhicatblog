@@ -1,8 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 
 function UserPosts({ profile, currentUser }) {
-    
- 
     const postArea = profile.user_posts.map(post => (
         <Card key={post.id} className="text-center m-3">
             <Card.Header className="">
@@ -21,7 +19,7 @@ function UserPosts({ profile, currentUser }) {
             </Card.Body>
             <Card.Footer className="text-muted">{post.date}</Card.Footer>
         </Card>
-    ))
+    ));
 
     return <>{postArea}</>;
 }

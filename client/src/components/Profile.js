@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { Button, Container, Form } from "react-bootstrap";
 import Header from "./Header";
 import Loading from "./Loading";
 import UserPosts from "./UserPost";
 import UserProfile from "./UserProfile";
 import defaultPic from "../img/default-user-pic.png";
-import { Link } from "react-router-dom";
 
 function Profile({ currentUser, handleLogout }) {
     const [isCurrentUser, setIsCurrentUser] = useState(false);
@@ -77,7 +77,7 @@ function Profile({ currentUser, handleLogout }) {
             });
     }
 
-    if (status === "pending") return <Loading />;
+    if (status === "pending" || error) return <Loading />;
 
     return (
         <>
@@ -106,7 +106,6 @@ function Profile({ currentUser, handleLogout }) {
                             <h1>Bio: {profile.bio}</h1>
                         </div>
                         <div className="d-flex flex-column mb-3 ">
-                            
                             <span
                                 className="align-self-end"
                                 type="button"
@@ -149,7 +148,6 @@ function Profile({ currentUser, handleLogout }) {
                             <h1>Bio: {profile.bio}</h1>
                         </div>
                         <div className="d-flex flex-column mb-3 ">
-
                             <img
                                 src={profile.picture || defaultPic}
                                 alt={`of ${profile.name}`}

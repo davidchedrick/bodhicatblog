@@ -1,20 +1,17 @@
-// client/src/components/Signup.js
-import { Alert, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { Alert, Button } from "react-bootstrap";
 import logo from "../img/tyComp.png";
 import TitleBar from "./TitleBar";
 
 function Signup({ setCurrentUser }) {
-    const history = useHistory();
     const [userError, setUserError] = useState(false);
-
     const [passwordError, setPasswordError] = useState(false);
-
     const [errorMessage, setErrorMessage] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const history = useHistory();
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -49,6 +46,7 @@ function Signup({ setCurrentUser }) {
             }
         });
     };
+
     return (
         <>
             <TitleBar />
