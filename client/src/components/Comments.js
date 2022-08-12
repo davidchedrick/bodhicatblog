@@ -42,7 +42,7 @@ function Comments({ blog, currentUser, fetchRequest, setFetchRequest }) {
     return (
         <>
 
-
+            <h5 className="m-3">{blog.comments.length} Comments:</h5>
             {blog.comments.map(comment => (
                 <Comment key={comment.id} comment={comment} />
                 ))}
