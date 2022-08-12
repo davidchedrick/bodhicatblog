@@ -149,20 +149,11 @@ function Profile({ currentUser, handleLogout }) {
                             <h1>Bio: {profile.bio}</h1>
                         </div>
                         <div className="d-flex flex-column mb-3 ">
-                            <span
-                                className="align-self-end"
-                                type="button"
-                                onClick={() =>
-                                    setIsEditing(isEditing => !isEditing)
-                                }
-                            >
-                                ✏️
-                            </span>
 
                             <img
                                 src={profile.picture || defaultPic}
                                 alt={`of ${profile.name}`}
-                                className="avatar"
+                                className="avatar mt-4"
                             ></img>
                         </div>
                     </Container>
