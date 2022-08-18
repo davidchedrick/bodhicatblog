@@ -2,13 +2,13 @@ class Api::ProfilesController < ApplicationController
 
     def show
         profile = Profile.find(params[:id]) 
-        render json: profile
+        render json: profile, status: :ok
     end
 
     def update 
         profile = Profile.find(params[:id])
         profile.update(profile_params)
-        render json: profile
+        render json: profile, status: :accepted
     end
 
     private

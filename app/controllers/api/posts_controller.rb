@@ -7,7 +7,7 @@ class Api::PostsController < ApplicationController
     end
 
     def show
-        render json: set_post
+        render json: set_post, status: :ok
     end
 
 
@@ -17,8 +17,8 @@ class Api::PostsController < ApplicationController
     end
 
     def update 
-        set_post.update(post_params)
-        render json: set_post
+        set_post.update!(post_params)
+        render json: set_post, status: :accepted
     end
 
     def destroy
@@ -28,7 +28,7 @@ class Api::PostsController < ApplicationController
 
     private
     def set_post 
-        @post = Post.find(params[:id])
+       Post.find(params[:id])
     end
 
     def post_params 

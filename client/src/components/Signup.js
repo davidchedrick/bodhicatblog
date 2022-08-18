@@ -41,6 +41,8 @@ function Signup({ setCurrentUser }) {
                     if (errors.error.password_confirmation) {
                         setPasswordError(true);
                         setErrorMessage(errors.error.password_confirmation[0]);
+                        setPassword("");
+                        setPasswordConfirmation("");
                     }
                 });
             }

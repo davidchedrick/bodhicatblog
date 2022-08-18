@@ -22,7 +22,6 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
         fetch(`/api/posts/${id}`).then(r => {
             if (r.ok) {
                 r.json().then(blog => {
-                    console.log("blog: ", blog);
                     setState({ blog, error: null, status: "resolved" });
                     if (currentUser.id === blog.user_id) setIsPoster(true);
                 });
@@ -36,9 +35,12 @@ function Blog({ fetchRequest, setFetchRequest, currentUser }) {
                 );
             }
         });
+        return () => {
+            setState({ article: null, error: null, status: "pending" });
+        };
     }, [id, currentUser.id, fetchRequest]);
 
-    if (status === "pending") return <Loading />;
+    if (status === "pending" || error) return <Loading />;
 
     return (
         <>
