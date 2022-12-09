@@ -6,6 +6,12 @@ class Api::CommentsController < ApplicationController
         render json: comment, status: :created
     end
 
+    def sort_comments
+    
+        sort = Comment.pluck(:content).sort
+        render json: sort, status: :ok
+    end
+
     private
 
     def comments_params 

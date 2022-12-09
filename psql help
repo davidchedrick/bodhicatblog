@@ -1,0 +1,12 @@
+                                               List of databases
+                     Name                     |  Owner   | Encoding | Collate |  Ctype  |   Access privileges   
+----------------------------------------------+----------+----------+---------+---------+-----------------------
+ postgres                                     | postgres | UTF8     | C.UTF-8 | C.UTF-8 | 
+ react_rails_api_project_template_development | djc2     | UTF8     | C.UTF-8 | C.UTF-8 | 
+ react_rails_api_project_template_test        | djc2     | UTF8     | C.UTF-8 | C.UTF-8 | 
+ template0                                    | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+                                              |          |          |         |         | postgres=CTc/postgres
+ template1                                    | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+                                              |          |          |         |         | postgres=CTc/postgres
+(5 rows)
+
